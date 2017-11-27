@@ -1,14 +1,17 @@
 package basic
 
 import (
-	"fmt"
+	"errors"
 )
 
-func main() {
-	fmt.Println(ReverseString("hello"))
-}
+// ****** Reverse String *******
+//
+// You need to reverse the provided string.
+// You may need to turn the string into an
+// array before you can reverse it.
+// And your result must be a string.
+//
 
-//ReverseString takes a string and returns it's reversed variant
 func ReverseString(str string) string {
 	r := make([]byte, len(str))
 	for i := 0; i < len(str); i++ {
@@ -17,7 +20,11 @@ func ReverseString(str string) string {
 	return string(r)
 }
 
-//Factorialize takes an int and returns factorial of it
+// ******** Factorialize Number ********
+// Take an int and return factorial of it
+// Just for now there is no need to check for errors
+//
+
 func Factorialize(n int) int {
 	fact := 1
 	for n > 1 {
@@ -27,9 +34,36 @@ func Factorialize(n int) int {
 	return fact
 }
 
-//IsPalindrome checks if a string can be read in both directions, omitting digits and non-letter characters
+// ******** Factorialize With Errors ********
+//
+// Now let's try to do the same function, but check for errors
+// Take a look at errors package and make brand New error
+func FactorializeWithError(n int) (int, error) {
+	if n < 0 {
+		return 0, errors.New("Can't factorialize negative number")
+	}
+	fact := 1
+	for n > 1 {
+		fact *= n
+		n--
+	}
+	return fact, nil
+}
+
+// ******** Check for Palindromes ********
+//
+// Return true if the given string is a palindrome. Otherwise, return false.
+// A palindrome is a word or sentence that's spelled the same way both forward and backward,
+// ignoring punctuation, case, and spacing.
+//
+// Note!
+//
+// You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols)
+// and turn everything lower case in order to check for palindromes.
+//
+
 func IsPalindrome(str string) bool {
-	isPalindrome := true
+	// isPalindrome := true
 	// 	front := 0
 	// 	back := len(str) - 1
 	// 	re := regexp.MustCompile(`[\W_]`)
@@ -55,7 +89,7 @@ func IsPalindrome(str string) bool {
 	// 		front++
 	// 		back--
 	// 	}
-	return isPalindrome
+	return false
 }
 
 func FindLongestWord(str string) int {
